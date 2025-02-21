@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" href="fantapalio_icon.png">
+    <title>FantaPalio dei Rioni</title>
+</head>
+<body>
+    <header>
+        <h1>FantaPalio dei Rioni</h1>
+    </header>
+    <main>
+        <div class="avviso">
+            <!--<p>Spazio per avvisi</p>-->
+            <h2>AVVISO</h2>
+            <p>Le squadre potranno essere registrate tramite l' apposito form fino a domenica sera ***</p>
+        </div>
+        <div class="button-container">
+            <a href="registration/registration.html"><button class="rectangle-button">Registra una squadra</button></a>
+            <a href="rules/rules.html"><button class="rectangle-button">Regolamento</button></a>
+            <!-- <a href="boxscores/boxscores.html"><button class="rectangle-button">Tabellini statistiche</button></a> -->
+            <a href="game_results/game_results.html"><button class="rectangle-button">Risultati partite</button></a>
+            <a href="boxscores_tab/boxscores_tab.html"><button class="rectangle-button">Tabellini statistiche</button></a>
+            <a href="team_rankings_div/team_rankings.html"><button class="rectangle-button">Classifica squadre</button></a>
+            <a href="player_rankings_div/player_rankings.html"><button class="rectangle-button">Classifica giocatori</button></a>
+            <a href="player_detail/player_detail.html"><button class="rectangle-button">Dettaglio giocatori</button></a>
+        </div>
+        <p>Dettaglio squadra:</p>
+        <select id="teamDetails" class="dropdown">
+            <!-- Le opzioni verranno caricate da JavaScript -->
+        </select>
+        <div id="teamCardsContainer1" class="team-cards-container1">
+            <!-- Le schede verranno aggiunte dinamicamente con JavaScript -->
+        </div>
+    </main>
+    <script type="module" src="data.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>

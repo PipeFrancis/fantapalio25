@@ -1,0 +1,579 @@
+:root {
+    --main-color1:rgb(204, 92, 0);
+    --main-color2:rgb(6, 1, 87);
+
+    --nord-color1:rgb(255, 0, 0);
+    --nord-color2:rgb(0, 0, 0);
+
+    --west-color1:rgb(0, 0, 0);
+    --west-color2:rgb(255, 213, 0);
+
+    --est-color1:rgb(4, 0, 218);
+    --est-color2:rgb(255, 26, 26);
+    --est-color3:rgb(255, 255,255);
+
+    --sud-color1:rgb(255, 255, 255);
+    --sud-color2:rgb(34, 145, 0);
+    --sud-color3:red;
+
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: var(--main-color1);
+    color: white;
+    text-align: center;
+    padding: 0.5em 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1em; /* Aggiornato per aumentare la dimensione del titolo */
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+a button {
+    display: block;
+    width: 250px;
+    margin: 10px auto;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: var(--main-color1);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+a button:hover {
+    background-color: var(--main-color2);
+}
+
+.dropdown {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+footer {
+    background-color: var(--main-color2);
+    color: white;
+    text-align: center;
+    padding: 1px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.table-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altezza del viewport */
+}
+
+#teamTable {
+    width: 80%; /* Larghezza desiderata della tabella */
+    /* Altri stili desiderati per la tabella */
+}
+
+#teamTable th, #teamTable td {
+    padding: 8px; /* Padding per le celle */
+    text-align: center; /* Testo centrato nelle celle */
+}
+.bold-row {
+    font-weight: bold;
+}
+/* Stile per la tabella */
+.table-container-player-rankings {
+    width: 65%;
+    margin: auto;
+}
+
+#playerTable {
+    
+    border-collapse: collapse; /* Combina i bordi delle celle */
+}
+
+#playerTable th, #playerTable td {
+    padding: 5px; /* Aggiunge spazio interno (padding) a tutte le celle */
+    text-align: center; /* Centra il testo nelle celle */
+}
+
+.table-container-team-rankings {
+    width: 90%;
+    margin: auto;
+}
+
+#teamTable {
+    
+    border-collapse: collapse; /* Combina i bordi delle celle */
+}
+
+#teamTable th, #teamTable td {
+    padding: 5px; /* Aggiunge spazio interno (padding) a tutte le celle */
+    text-align: center; /* Centra il testo nelle celle */
+}
+.team-name {
+    font-size: 1.2em; /* Dimensione del testo maggiore per il nome del team */
+}
+
+.player-info {
+    font-size: 0.8em; /* Dimensione del testo minore per le informazioni sui giocatori */
+}
+
+.bold {
+    font-weight: bold; /* Mantieni questa regola se vuoi che il tot_team sia in grassetto */
+}
+
+/* Celle della tabella */
+#teamTable th, #teamTable td {
+    padding: 8px; /* Aggiunge spazio interno alle celle */
+    text-align: left; /* Allinea il testo a sinistra */
+    font-size: 1em; /* Imposta una dimensione del testo di base */
+}
+
+/* Intestazioni della tabella */
+#teamTable th {
+    background-color: #f2f2f2; /* Aggiunge uno sfondo alle intestazioni */
+}
+
+/* Stili specifici per mobile */
+@media screen and (max-width: 768px) {
+    /* Dimensioni del testo */
+    #teamTable th, #teamTable td {
+        font-size: 0.8em; /* Riduce la dimensione del testo per schermi piccoli */
+        text-align: center; 
+    }
+
+    /* Dimensioni del testo per team name */
+    .team-name {
+        font-size: 1em; /* Aumenta leggermente la dimensione del testo per il nome del team */
+    }
+
+    /* Dimensioni del testo per player info */
+    .player-info {
+        font-size: 0.7em; /* Riduce leggermente la dimensione del testo per le informazioni sui giocatori */
+    }
+}
+
+/* Contenitore delle schede */
+.team-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+}
+
+/* Scheda */
+.team-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Intestazioni e informazioni */
+.team-card-header {
+    font-size: 1.5em;
+    margin-bottom: 8px;
+}
+
+.team-card-body {
+    font-size: 1em;
+}
+
+.team-card .bold {
+    font-weight: bold;
+}
+
+.team-card .player-info {
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.team-card .punteggio-info {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 3em;
+}
+
+/* Stili specifici per mobile */
+@media screen and (max-width: 768px) {
+    .team-card-header {
+        font-size: 1.2em;
+    }
+
+    .team-card-body {
+        font-size: 0.9em;
+    }
+
+    .team-card .player-info {
+        font-size: 0.8em;
+    }
+}
+
+
+/* Styles for player cards */
+.player-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.player-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(100% - 10px); /* Full width with padding adjustment */
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.player-card h3 {
+    margin-top: 0;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.player-card p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.player-card .total {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+@media (min-width: 600px) {
+    .player-card {
+        width: calc(50% - 30px); /* Two cards per row on medium screens */
+    }
+}
+
+@media (min-width: 900px) {
+    .player-card {
+        width: calc(33.333% - 30px); /* Three cards per row on large screens */
+    }
+}
+
+
+/* Styles for team cards */
+.team-cards-container1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.team-card1 {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: calc(100% - 10px); /* Full width with padding adjustment */
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.team-card1 h3 {
+    margin-top: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+.team-card h3 {
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.team-card1 p {
+    margin: 3px 0;
+    font-size: 20px;
+}
+
+.team-card1 .total {
+    font-weight: bold;
+    font-size: 1.8em;
+}
+
+@media (min-width: 600px) {
+    .team-card1 {
+        width: calc(50% - 40px); /* Two cards per row on medium screens */
+    }
+}
+
+@media (min-width: 900px) {
+    .team-card1 {
+        width: calc(33.333% - 40px); /* Three cards per row on large screens */
+    }
+}
+.totalpointsindex{
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.gamescore{
+    width: 60%;
+    margin: auto;
+    margin-bottom:30px;
+    font-size: 2em;
+    flex-direction: row;
+    display:flex;
+}
+
+.score_west{
+    width: 50%;
+    color: var(--west-color2);
+    background-color: var(--west-color1);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 5px solid var(--west-color2);
+    margin: 8px;
+    font-weight: bold;
+}
+.score_nord{
+    width: 50%;
+    color: var(--nord-color2);
+    background-color: var(--nord-color1);
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 8px;
+    border: 5px solid var(--nord-color2);
+    font-weight: bold;
+
+}
+    
+.score_sud{
+    width: 50%;
+    color: var(--sud-color3);
+    background-color: var(--sud-color1);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 5px solid var(--sud-color2);
+    margin: 8px;
+    font-weight: bold;
+
+}
+.score_est{
+    width: 50%;
+    color: var(--est-color3);
+    background-color: var(--est-color1);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 5px solid var(--est-color2);
+    margin: 8px;
+    font-weight: bold;
+
+}
+.gameday{
+    font-size: 1.5em;
+}
+
+.regolamento{
+    width:85%;
+    margin: auto;
+}
+@media (max-width: 768px) {
+    .gamescore {
+        width: 90%;
+        flex-direction: column;
+        font-size: 1.5em;
+        margin-top: 40px;
+    }
+
+    .score_west, .score_nord, .score_sud, .score_est {
+        width: 80%;
+        margin: 5px auto;
+        font-size: 1em;
+    }
+}
+
+.cardclassWEST{
+    background-color: var(--west-color1);
+    border: 6px solid var(--west-color2);
+    color: var(--west-color2);
+    border-radius: 12px;
+}
+.cardclassNORD{
+    background-color: var(--nord-color1);
+    border: 6px solid var(--nord-color2);
+    color: var(--nord-color2);
+    border-radius: 12px;
+}
+.cardclassSUD{
+    background-color: var(--sud-color1);
+    border: 6px solid var(--sud-color2);
+    color: var(--sud-color3);
+    border-radius: 12px;
+}
+.cardclassEST{
+    background-color: var(--est-color1);
+    border: 6px solid var(--est-color2);
+    color: var(--est-color3);
+    border-radius: 12px;
+}
+
+.cardclasssoftWEST{
+    border: 4px solid var(--west-color1);
+}
+.cardclasssoftNORD{
+    border: 4px solid var(--nord-color1);
+}
+.cardclasssoftSUD{
+    border: 4px solid var(--sud-color2);
+}
+.cardclasssoftEST{
+    border: 4px solid var(--est-color1);
+}
+
+
+
+
+
+
+
+
+
+.players-container {
+    display: flex; /* Usa flexbox per disporre i giocatori su righe */
+    flex-wrap: wrap; /* Avvolgi le card se non ci sono abbastanza spazi orizzontali */
+    justify-content: center; /* Centra le card orizzontalmente */
+    gap: 10px; /* Spazio tra le card */
+    max-height: 400px; /* Altezza massima del contenitore */
+    overflow-y: auto; /* Abilita lo scrolling verticale se necessario */
+    margin-bottom: 20px; /* Margine inferiore per separare il team dal contenitore giocatori */
+}
+
+.player-card1 {
+    flex: 1 0 calc(25% - 10px); /* Calc con spazi tra i bordi */
+    max-width: 200px; /* Larghezza massima delle card */
+    box-sizing: border-box; /* Rispetta il box model */
+}
+@media (max-width: 768px) {
+    .player-card1 {
+        flex: 1 0 calc(50% - 10px); /* Due card per riga su schermi più piccoli */
+    }
+}
+
+
+
+
+.team-container {
+    display: flex; /* Utilizza flexbox */
+    flex-wrap: wrap; /* Avvolgi le card se necessario */
+    justify-content: center; /* Centra le card orizzontalmente */
+    gap: 10px; /* Spazio tra le card */
+    margin-top: 20px; /* Margine superiore */
+    /*border: 2px solid black;*/
+}
+
+.validmessage{
+    font-size: 4em;
+}
+
+.registrationlink{
+    text-decoration: underline;
+}
+
+.boxscore-tableNORD, .boxscore-tableWEST, .boxscore-tableEST, .boxscore-tableSUD{
+    margin: auto;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.boxscore-tableNORD th, .boxscore-tableNORD td, .boxscore-tableWEST th, .boxscore-tableWEST td, .boxscore-tableEST th, .boxscore-tableEST td, .boxscore-tableSUD th, .boxscore-tableSUD td {
+    border: 1px solid #ccc; /* Light grey border */
+    padding: 8px; /* Padding inside table cells */
+}
+
+
+.boxscore-tableWEST th {
+    background-color: var(--west-color1); /* Slightly different background for header */
+    color: var(--west-color2);
+    border: 2px solid var(--west-color2); /* Light grey border */
+
+    
+}
+.boxscore-tableNORD th {
+    background-color: var(--nord-color1); /* Slightly different background for header */
+    color: var(--nord-color2);
+    border: 2px solid var(--nord-color2); /* Light grey border */
+
+}
+.boxscore-tableSUD th {
+    background-color: var(--sud-color1); /* Slightly different background for header */
+    color: var(--sud-color3);
+    border: 2px solid var(--sud-color2); /* Light grey border */
+
+}
+.boxscore-tableEST th {
+    background-color: var(--est-color1); /* Slightly different background for header */
+    color: var(--est-color3);
+    border: 2px solid var(--est-color2); /* Light grey border */
+
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+.plaer-stats-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+.game-card {
+    /*non mettere colore o colore bordo perchè prende quello del team*/
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+}
+
+.game-card h3 {
+    margin-top: 0;
+}
+
+.totalpointsindex {
+    font-weight: bold;
+}
+
+.avviso{
+    width: 80%;
+    margin: auto;
+    border: 2px solid var(--main-color2);
+    border-radius: 5px;
+    color: var(--main-color2);
+    padding-bottom:20px;
+}

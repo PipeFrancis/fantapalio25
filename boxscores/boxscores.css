@@ -1,0 +1,35 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 0.5em 0;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em; /* Aggiornato per aumentare la dimensione del titolo */
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+.image-container {
+    width: 100%; /* Imposta la larghezza desiderata */
+    margin: 5px auto; /* Centra il contenitore rispetto alla larghezza del body */
+}
+
+.image-container img {
+    width: 100%; /* Fai sì che l'immagine occupi l'intera larghezza del contenitore */
+    height: auto; /* Imposta l'altezza automatica per mantenere le proporzioni originali */
+    display: block; /* Rimuove lo spazio bianco extra sotto l'immagine */
+}
+
+h2 {
+    font-size: 1.5em; /* Imposta la dimensione del sottotitolo */
+}
