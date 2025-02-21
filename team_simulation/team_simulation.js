@@ -1,145 +1,165 @@
-// Import Firebase functions (Firebase v9+ modular SDK)
+// Importa l'array di giocatori dal modulo esterno
+import { players } from '../data.js';
+
+// Firebase configuration
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-// Your Firebase config
+// Configurazione di Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAwYuAbzv7NesCtrT7LgQag3C9h3U4v-2w",
-  authDomain: "fantapalio25test.firebaseapp.com",
-  projectId: "fantapalio25test",
-  storageBucket: "fantapalio25test.appspot.com",
-  messagingSenderId: "257433039752",
-  appId: "1:257433039752:web:b0a4055ea0a61a7169403d"
+    apiKey: "AIzaSyAwYuAbzv7NesCtrT7LgQag3C9h3U4v-2w",
+    authDomain: "fantapalio25test.firebaseapp.com",
+    projectId: "fantapalio25test",
+    storageBucket: "fantapalio25test.appspot.com",
+    messagingSenderId: "257433039752",
+    appId: "1:257433039752:web:b0a4055ea0a61a7169403d"
 };
 
-// Initialize Firebase
+// Inizializza Firebase
 const app = initializeApp(firebaseConfig);
-
-// Initialize Firestore
 const db = getFirestore(app);
 
-// Import the players data (from data.js)
-import { players } from '../data.js';
-
-// Variables to track selected players and total cost
+// Variabili globali per tenere traccia dei giocatori selezionati e dei crediti totali
 let selectedPlayers = [];
 let totalCost = 0;
-const maxCredits = 30; // Max budget available for the team
+const maxCredits = 30; // Massimo credito disponibile per il team
 
-// Function to add a player to the team
+// Funzione per aggiungere un giocatore al team
 function addPlayer(player) {
+    // Verifica se il numero di giocatori selezionati ha raggiunto il limite di 5
     if (selectedPlayers.length >= 5) {
-        alert("You have already selected the maximum number of players.");
+        alert("Hai già selezionato il numero massimo di giocatori.");
         return;
     }
 
+    // Verifica se il giocatore è già presente nel team
     if (selectedPlayers.some(p => p.name === player.name)) {
-        alert("This player is already selected.");
+        alert("Questo giocatore è già stato selezionato.");
         return;
     }
 
+    // Verifica se il totale dei crediti supera il limite
     if (totalCost + player.cost > maxCredits) {
-        alert("You don't have enough credits to select this player.");
+        alert("Non hai abbastanza crediti per selezionare questo giocatore.");
         return;
     }
 
-    // Add the player
+    // Aggiungi il giocatore al team
     selectedPlayers.push(player);
     totalCost += player.cost;
 
-    // Update team interface
+    // Aggiorna l'interfaccia del team
     renderTeam();
     updateCreditsCounter();
 }
 
-// Function to remove a player from the team
+// Funzione per rimuovere un giocatore dal team
 function removePlayer(index) {
     const removedPlayer = selectedPlayers.splice(index, 1)[0];
     totalCost -= removedPlayer.cost;
 
-    // Update team interface
+    // Aggiorna l'interfaccia del team
     renderTeam();
     updateCreditsCounter();
 }
 
-// Function to render the team on the page
+// Funzione per aggiornare l'interfaccia del team
 function renderTeam() {
     const teamContainer = document.getElementById('teamContainer');
     teamContainer.innerHTML = '';
 
-    // Show "VALID" when team is complete
-    if (selectedPlayers.length === 5) {
-        if (!document.getElementById('validMessage')) {
-            const validMessage = document.createElement('p');
-            validMessage.textContent = 'VALIDO';
-            validMessage.classList.add('valid-message');
-            validMessage.style.color = 'green';
-            validMessage.style.fontWeight = 'bold';
-            validMessage.id = 'validMessage';
-            teamContainer.parentNode.insertBefore(validMessage, teamContainer);
+    const validMessage = document.getElementById('validMessage');
+    const signupLink = document.getElementById('signupLink');
+
+    if (selectedPlayers.length === 0) {
+        teamContainer.innerHTML = '<p><em>Team vuoto</em></p>';
+        if (validMessage) {
+            validMessage.remove();
+        }
+        if (signupLink) {
+            signupLink.remove();
+        }
+    } else {
+        if (selectedPlayers.length === 5) {
+            if (!validMessage) {
+                const newValidMessage = document.createElement('p');
+                newValidMessage.textContent = 'VALIDO';
+                newValidMessage.classList.add('valid-message');
+                newValidMessage.style.color = 'green';
+                newValidMessage.style.fontWeight = 'bold';
+                newValidMessage.id = 'validMessage';
+                teamContainer.parentNode.insertBefore(newValidMessage, teamContainer);
+
+                const newSignupLink = document.createElement('a');
+                newSignupLink.href = "#";
+                newSignupLink.textContent = "Ricorda di iscrivere la squadra!";
+                newSignupLink.id = 'signupLink';
+                newSignupLink.classList.add('registrationlink');
+                newValidMessage.parentNode.insertBefore(newSignupLink, newValidMessage.nextSibling);
+            }
+        } else {
+            if (validMessage) {
+                validMessage.remove();
+            }
+            if (signupLink) {
+                signupLink.remove();
+            }
         }
 
-        // Add the button for submitting the team
-        const submitButton = document.createElement('button');
-        submitButton.textContent = 'Submit Team';
-        submitButton.addEventListener('click', submitTeam);
-        teamContainer.parentNode.appendChild(submitButton);
+        selectedPlayers.forEach((player, index) => {
+            const playerCard = document.createElement('div');
+            playerCard.classList.add('player-card1', `cardclass${player.team}`);
+            playerCard.innerHTML = `
+                <p>${player.name}</p>
+                <p>${player.team} &emsp; $${player.cost}</p>
+            `;
+            // Aggiungi un evento per rimuovere il giocatore cliccando sulla card
+            playerCard.addEventListener('click', () => removePlayer(index));
+            teamContainer.appendChild(playerCard);
+        });
     }
-
-    // Display selected players
-    selectedPlayers.forEach((player, index) => {
-        const playerCard = document.createElement('div');
-        playerCard.classList.add('player-card', `cardclass${player.team}`);
-        playerCard.innerHTML = `
-            <p>${player.name}</p>
-            <p>${player.team} &emsp; $${player.cost}</p>
-        `;
-        playerCard.addEventListener('click', () => removePlayer(index));
-        teamContainer.appendChild(playerCard);
-    });
 }
 
-// Function to update credits counter
+// Funzione per aggiornare i crediti rimanenti
 function updateCreditsCounter() {
     const creditsCounter = document.getElementById('creditsCounter');
-    creditsCounter.textContent = `You have ${maxCredits - totalCost} credits left`;
+    creditsCounter.textContent = `Hai ancora: ${maxCredits - totalCost}$`;
 }
 
-// Function to populate the players list on the page
+// Funzione per popolare la lista dei giocatori disponibili
 function populatePlayersList() {
     const playersContainer = document.getElementById('playersContainer');
     playersContainer.innerHTML = '';
 
     players.forEach((player) => {
         const playerCard = document.createElement('div');
-        playerCard.classList.add('player-card', `cardclass${player.team}`);
+        playerCard.classList.add('player-card1', `cardclass${player.team}`);
         playerCard.innerHTML = `
             <p>${player.name}</p>
             <p>${player.team} &emsp; $${player.cost}</p>
         `;
+        // Aggiungi un evento per aggiungere il giocatore cliccando sulla card
         playerCard.addEventListener('click', () => addPlayer(player));
         playersContainer.appendChild(playerCard);
     });
 
-    // Add the credits counter below players list
+    // Aggiungi l'elemento per i crediti rimanenti
     const creditsCounter = document.createElement('p');
     creditsCounter.id = 'creditsCounter';
-    creditsCounter.textContent = `You have ${maxCredits} credits`;
-    playersContainer.appendChild(creditsCounter);
+    creditsCounter.textContent = `Hai ancora: ${maxCredits}$`;
+    playersContainer.parentNode.insertBefore(creditsCounter, playersContainer.nextSibling);
 }
 
-// Function to submit the team to Firestore
+// Funzione per inviare il team a Firestore
 async function submitTeam() {
-    // Get team name and email from user input
-    const teamName = prompt("Enter your team name:");
-    const email = prompt("Enter your email address:");
+    const teamName = document.getElementById('teamName').value;
+    const email = document.getElementById('email').value;
 
     if (!teamName || !email) {
-        alert("Please enter both a team name and email.");
+        alert("Per favore inserisci sia il nome della squadra che la tua email.");
         return;
     }
 
-    // Prepare team data to be saved
     const teamData = {
         teamName: teamName,
         email: email,
@@ -149,16 +169,18 @@ async function submitTeam() {
     };
 
     try {
-        // Save team data to Firestore
         const teamsRef = collection(db, "teams");
         await addDoc(teamsRef, teamData);
-        alert("Your team has been submitted successfully!");
+        alert("La tua squadra è stata inviata con successo!");
     } catch (e) {
-        alert("Error adding document: " + e);
+        alert("Errore nell'aggiungere il documento: " + e);
     }
 }
 
-// Initialize the page by populating the players list
+// Inizializza la pagina
 window.onload = () => {
     populatePlayersList();
+
+    // Aggiungi l'evento per il submit della squadra
+    document.getElementById('submitTeamButton').addEventListener('click', submitTeam);
 };
