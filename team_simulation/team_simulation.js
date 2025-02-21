@@ -5,16 +5,6 @@ import { players } from '../data.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-// Configurazione di Firebase
-const firebaseConfig = {
-    apiKey: "AIzaSyAwYuAbzv7NesCtrT7LgQag3C9h3U4v-2w",
-    authDomain: "fantapalio25test.firebaseapp.com",
-    projectId: "fantapalio25test",
-    storageBucket: "fantapalio25test.appspot.com",
-    messagingSenderId: "257433039752",
-    appId: "1:257433039752:web:b0a4055ea0a61a7169403d"
-};
-
 // Inizializza Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
