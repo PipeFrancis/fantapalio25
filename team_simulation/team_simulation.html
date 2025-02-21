@@ -12,32 +12,18 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <!-- <header>
-        <h1>Prova a creare la tua squadra</h1>
-    </header> -->
-    <main>
-        <div class="button-container">
-            <a href="../index.html"><button class="rectangle-button">Indietro</button></a>
+    <div class="button-container">
+        <a href="../index.html"><button class="rectangle-button">Indietro</button></a>
+    </div>
+    <div class="container">
+        <h1>Seleziona 5 giocatori, hai 30$ a disposizione</h1>
+        <div class="players-container" id="playersContainer"></div>
+        <h2>Il tuo team</h2>
+        <div class="team-container" id="teamContainer">
+            <p><em>Team vuoto</em></p>
         </div>
-        <div class="container">
-            <h1>Seleziona 5 giocatori, hai 30$ a disposizione</h1>
-            <div class="players-container" id="playersContainer">
-                <!-- Qui verranno aggiunte dinamicamente le card dei giocatori -->
-            </div>
-            <h2>Il tuo team</h2>
-            <div class="team-container" id="teamContainer">
-                <!-- Qui verranno aggiunti dinamicamente i giocatori selezionati -->
-                <p><em>Team vuoto</em></p>
-            </div>
-            
-        </div>
-        <script type="module" src="team_simulation.js"></script>
-    </main>
-    <!--
-    <footer>
-        <p>Creato da [Il Tuo Nome]</p>
-    </footer>
-    -->
-    
+    </div>
+
+    <script type="module" src="team_simulation.js"></script>
 </body>
 </html>
